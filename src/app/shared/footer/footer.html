@@ -1,1 +1,76 @@
-<p>footer works!</p>
+<footer class="bg-[#F6F3EB] text-[#0B1623] pt-20 pb-12 px-6 lg:px-16 border-t border-gray-300/60">
+  <div class="max-w-7xl mx-auto">
+    
+    <!-- Main Footer Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-gray-300/60">
+      
+      <!-- Col 1: Logo & Mission Statement (Span 5) -->
+      <div class="md:col-span-5 flex flex-col items-start gap-6">
+        <!-- Logo -->
+        <a routerLink="/" class="flex items-center gap-3 group">
+          <div class="h-12 flex items-center">
+            <img src="images/enarviclabsLogo.png" alt="Enarvic Labs Logo" class="h-full w-auto object-contain">
+          </div>
+        </a>
+
+        <!-- Description Paragraph -->
+        <p class="text-[#64748B] text-sm leading-relaxed max-w-sm">
+          Architecting next-generation digital ventures and enterprise software platforms through institutional discipline, capital precision, and technical rigor.
+        </p>
+
+        <!-- Global Location Tag -->
+        <div class="text-xs font-mono font-bold tracking-widest text-[#12606A] mt-2">
+          GLOBAL STUDIO • EGYPT
+        </div>
+      </div>
+
+      <!-- Col 2: Ventures Links (Span 2) -->
+      <div class="md:col-span-2 flex flex-col gap-4">
+        <h4 class="text-xs font-mono font-bold tracking-wider text-[#0B1623] uppercase">VENTURES</h4>
+        <ul class="space-y-3 text-sm font-medium text-[#64748B]">
+          <li><a routerLink="/" class="hover:text-[#12606A] transition-colors">Home</a></li>
+          <li><a routerLink="/solutions" class="hover:text-[#12606A] transition-colors">Solutions</a></li>
+          <li><a routerLink="/approach" class="hover:text-[#12606A] transition-colors">Approach</a></li>
+          <li><a routerLink="/company" class="hover:text-[#12606A] transition-colors">Company</a></li>
+          <li><a routerLink="/contact" class="hover:text-[#12606A] transition-colors">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Firm Links (Span 2) -->
+      <div class="md:col-span-2 flex flex-col gap-4">
+        <h4 class="text-xs font-mono font-bold tracking-wider text-[#0B1623] uppercase">FIRM</h4>
+        <ul class="space-y-3 text-sm font-medium text-[#64748B]">
+          <li><a routerLink="/privacy" class="hover:text-[#12606A] transition-colors">Privacy Policy</a></li>
+          <li><a routerLink="/terms" class="hover:text-[#12606A] transition-colors">Terms & Conditions</a></li>
+          <li><a routerLink="/leadership" class="hover:text-[#12606A] transition-colors">Partners & Leadership</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Enquiry & Briefings (Span 3) -->
+      <div class="md:col-span-3 flex flex-col gap-4">
+        <h4 class="text-xs font-mono font-bold tracking-wider text-[#0B1623] uppercase">ENQUIRY & BRIEFINGS</h4>
+        <p class="text-[#64748B] text-sm leading-relaxed">
+          Receive our quarterly venture dispatches and institutional investment thesis.
+        </p>
+        <!-- Optional: Small input or email sign-up if needed later -->
+      </div>
+
+    </div>
+
+    <!-- Bottom Copyright & Legal Links -->
+    <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-[#64748B]">
+      <!-- Copyright -->
+      <div>
+        © 2025 Enarvic Labs Ltd. All rights reserved. Architectural Digital Ventures.
+      </div>
+
+      <!-- Legal Links -->
+      <div class="flex items-center gap-6">
+        <a routerLink="/terms-of-venture" class="hover:text-[#0B1623] transition-colors">Terms of Venture</a>
+        <a routerLink="/regulatory" class="hover:text-[#0B1623] transition-colors">Regulatory Disclosures</a>
+        <a routerLink="/privacy-architecture" class="hover:text-[#0B1623] transition-colors">Privacy Architecture</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
