@@ -1,0 +1,64 @@
+<nav class="bg-[#F5F2EA] px-6 py-4 shadow-sm border-b border-gray-200/40 sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    
+    <!-- Logo Section -->
+    <a routerLink="/" class="flex items-center gap-3 group">
+    <!-- هنا ثبتنا الـ height على 12 أو 14، وخلينا الـ w-auto عشان اللوجو ياخد راحته في العرض -->
+        <div class="h-12 flex items-center">
+            <img src="images/enarviclabsLogo.png" alt="Enarvic Labs Logo" class="h-full w-auto object-contain">
+        </div>
+    </a>
+
+    <!-- Desktop Navigation Links (Hidden on Mobile) -->
+    <div class="hidden md:flex items-center gap-8 font-medium text-[#0B1623]">
+      <a routerLink="/" routerLinkActive="text-[#12606A] font-bold" [routerLinkActiveOptions]="{exact: true}" class="hover:text-[#12606A] transition-colors">Home</a>
+      <a routerLink="/solutions" routerLinkActive="text-[#12606A] font-bold" class="hover:text-[#12606A] transition-colors">Solutions</a>
+      <a routerLink="/approach" routerLinkActive="text-[#12606A] font-bold" class="hover:text-[#12606A] transition-colors">Approach</a>
+      <a routerLink="/company" routerLinkActive="text-[#12606A] font-bold" class="hover:text-[#12606A] transition-colors">Company</a>
+    </div>
+
+    <!-- Desktop Contact Us Button -->
+    <div class="hidden md:block">
+      <a routerLink="/contact" class="flex items-center gap-2 bg-[#0B1623] text-white px-6 py-3  font-medium hover:bg-[#12606A] transition-all duration-300 shadow-md hover:shadow-lg">
+        <span>Contact us</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Mobile Burger Menu Button -->
+    <div class="md:hidden flex items-center">
+      <button (click)="toggleMenu($event)" class="text-[#0B1623] focus:outline-none p-2 rounded-lg hover:bg-black/5 transition-colors">
+        <!-- Burger Icon -->
+        <svg *ngIf="!isOpen" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <!-- Close Icon -->
+        <svg *ngIf="isOpen" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <!-- Mobile Dropdown Menu (Smooth Animation) -->
+  <div 
+    [ngClass]="isOpen ? 'max-h-96 opacity-100 py-6 border-b' : 'max-h-0 opacity-0 py-0 border-none pointer-events-none'"
+    class="md:hidden absolute top-full left-0 w-full bg-[#F5F2EA] border-gray-200/60 shadow-xl px-6 flex flex-col gap-4 overflow-hidden transition-all duration-300 ease-in-out">
+    
+    <a routerLink="/" (click)="isOpen = false" class="text-lg font-medium text-[#0B1623] hover:text-[#12606A] py-2 border-b border-gray-200/40 transition-colors">Home</a>
+    <a routerLink="/solutions" (click)="isOpen = false" class="text-lg font-medium text-[#0B1623] hover:text-[#12606A] py-2 border-b border-gray-200/40 transition-colors">Solutions</a>
+    <a routerLink="/approach" (click)="isOpen = false" class="text-lg font-medium text-[#0B1623] hover:text-[#12606A] py-2 border-b border-gray-200/40 transition-colors">Approach</a>
+    <a routerLink="/company" (click)="isOpen = false" class="text-lg font-medium text-[#0B1623] hover:text-[#12606A] py-2 border-b border-gray-200/40 transition-colors">Company</a>
+    
+    <a routerLink="/contact" (click)="isOpen = false" class="mt-2 flex items-center justify-center gap-2 bg-[#0B1623] text-white px-6 py-3  font-medium hover:bg-[#12606A] transition-all">
+      <span>Contact us</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
+    </a>
+  </div>
+</nav>

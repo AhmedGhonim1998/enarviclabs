@@ -1,0 +1,79 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+@keyframes pulseBeam {
+  0% { stroke-dashoffset: 60; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes dataFlowReverse {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 60; }
+}
+
+@keyframes floatSaaSPanel {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pulseDot {
+  0%, 100% { r: 3.5px; opacity: 0.9; }
+  50% { r: 5.5px; opacity: 0.4; }
+}
+
+@keyframes liveBarGrow {
+  0%, 100% { height: 18px; y: 222px; }
+  50% { height: 32px; y: 208px; }
+}
+
+@keyframes liveBarGrow2 {
+  0%, 100% { height: 26px; y: 214px; }
+  50% { height: 14px; y: 226px; }
+}
+
+@keyframes liveBarGrow3 {
+  0%, 100% { height: 35px; y: 205px; }
+  50% { height: 22px; y: 218px; }
+}
+
+@keyframes liveWavePulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+@keyframes spinGentle {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.float-saas {
+  transform-origin: 300px 250px;
+  animation: floatSaaSPanel 6s ease-in-out infinite;
+}
+
+.flow-line-1 {
+  stroke-dasharray: 6 6;
+  animation: pulseBeam 2s linear infinite;
+}
+
+.flow-line-2 {
+  stroke-dasharray: 4 6;
+  animation: dataFlowReverse 2.5s linear infinite;
+}
+
+.pulse-beacon {
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+.bar-anim-1 { animation: liveBarGrow 2.8s ease-in-out infinite; }
+.bar-anim-2 { animation: liveBarGrow2 3.2s ease-in-out infinite 0.5s; }
+.bar-anim-3 { animation: liveBarGrow3 2.5s ease-in-out infinite 1s; }
+.wave-anim { animation: liveWavePulse 3s ease-in-out infinite; }
+
+.spin-icon {
+  transform-origin: 295px 125px;
+  animation: spinGentle 20s linear infinite;
+}
