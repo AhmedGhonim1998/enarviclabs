@@ -216,68 +216,62 @@
      </div>
      
        <!-- Projects Grid Mosaic -->
-  <div class="space-y-12" id="projects-container">
-    
-    <!-- Project 01: Synapse Core (Fintech) -->
-    <article class="project-card bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden border border-stone-200/60" data-category="fintech">
+  <div class="space-y-12">
+  @for (p of projects; track $index; let i = $index; let odd = $odd) {
+    <article class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden border border-stone-200/60">
       <div class="grid grid-cols-1 lg:grid-cols-12">
-        
-        <!-- Left: Narrative & Metrics -->
-        <div class="lg:col-span-7 p-8 lg:p-12 flex flex-col justify-between space-y-8">
+
+        <!-- Narrative -->
+        <div class="lg:col-span-7 p-8 lg:p-12 flex flex-col justify-between space-y-8"
+             [class.order-1]="odd" [class.lg:order-2]="odd">
           <div class="space-y-4">
             <div class="flex items-center gap-3 flex-wrap">
-              <span class="text-lg font-bold text-[#1e6771]">01 / FINTECH</span>
-              <span class="text-xs uppercase tracking-wider bg-[#aaeef9] text-[#004f58] px-2.5 py-1 rounded font-semibold">Active Series A Scale</span>
-              <span class="text-xs text-[#44474c] uppercase tracking-wider">London · New York</span>
+              <span class="text-lg font-bold text-[#1e6771]">
+                {{ (i + 1).toString().padStart(2, '0') }} / {{ p.category }}
+              </span>
+              <span class="text-xs uppercase tracking-wider bg-[#aaeef9] text-[#004f58] px-2.5 py-1 rounded font-semibold">{{ p.status }}</span>
+              <span class="text-xs text-[#44474c] uppercase tracking-wider">{{ p.locations }}</span>
             </div>
+
             <div>
-              <h3 class="text-3xl lg:text-4xl font-bold text-[#1c1c17]">Synapse Core</h3>
-              <p class="text-base text-[#1e6771] font-medium mt-1">Enterprise Workflow Telemetry &amp; Continuous Compliance Engine</p>
+              <h3 class="text-3xl lg:text-4xl font-bold text-[#1c1c17]">{{ p.title }}</h3>
+              <p class="text-base text-[#1e6771] font-medium mt-1">{{ p.subtitle }}</p>
             </div>
-            <p class="text-base text-[#44474c] leading-relaxed">
-              Tier-1 investment banks and neobanks struggle with disjointed regulatory reporting pipelines. Synapse Core orchestrates high-throughput transaction telemetry into real-time regulatory ledgers, guaranteeing immutable cross-jurisdiction audit trails with sub-second reconciliations.
-            </p>
-            
-            <!-- Technical Architecture Tags -->
+
+            <p class="text-base text-[#44474c] leading-relaxed">{{ p.description }}</p>
+
             <div class="pt-2">
               <span class="text-xs uppercase tracking-wider text-[#1c1c17] font-semibold block mb-2">Core Architecture</span>
               <div class="flex flex-wrap gap-2">
-                <span class="bg-[#f1eee6] text-[#44474c] text-xs px-3 py-1.5 rounded-md font-mono">Rust Event Loop</span>
-                <span class="bg-[#f1eee6] text-[#44474c] text-xs px-3 py-1.5 rounded-md font-mono">Kafka · ClickHouse</span>
-                <span class="bg-[#f1eee6] text-[#44474c] text-xs px-3 py-1.5 rounded-md font-mono">GraphQL Federation</span>
-                <span class="bg-[#f1eee6] text-[#44474c] text-xs px-3 py-1.5 rounded-md font-mono">Zero-Knowledge Verification</span>
+                @for (tag of p.architecture; track tag) {
+                  <span class="bg-[#f1eee6] text-[#44474c] text-xs px-3 py-1.5 rounded-md font-mono">{{ tag }}</span>
+                }
               </div>
             </div>
           </div>
 
-          <!-- Quantitative Output Metric Badges -->
           <div class="grid grid-cols-3 gap-4 bg-[#f6f3eb] p-6 rounded-xl border border-stone-200/40">
-            <div>
-              <span class="text-2xl lg:text-3xl font-bold text-[#1c1c17] block">$12.4M</span>
-              <span class="text-xs text-[#44474c]">Current ARR Scale</span>
-            </div>
-            <div>
-              <span class="text-2xl lg:text-3xl font-bold text-[#1e6771] block">99.999%</span>
-              <span class="text-xs text-[#44474c]">Ledger Accuracy</span>
-            </div>
-            <div>
-              <span class="text-2xl lg:text-3xl font-bold text-[#1c1c17] block">&lt; 340ms</span>
-              <span class="text-xs text-[#44474c]">Settlement Cycle</span>
-            </div>
+            @for (m of p.metrics; track m.label) {
+              <div>
+                <span class="text-2xl lg:text-3xl font-bold block"
+                      [class]="m.highlight ? 'text-[#1e6771]' : 'text-[#1c1c17]'">{{ m.value }}</span>
+                <span class="text-xs text-[#44474c]">{{ m.label }}</span>
+              </div>
+            }
           </div>
 
-          <!-- Action Strip -->
           <div class="flex items-center justify-between pt-2">
             <a class="inline-flex items-center gap-2 text-sm font-semibold text-[#1e6771] hover:text-[#1c1c17] transition-colors" href="#">
-              <span>View Technical Architecture Blueprint</span>
+              <span>{{ p.linkLabel }}</span>
               <span class="material-symbols-outlined text-lg">arrow_outward</span>
             </a>
-            <span class="text-xs uppercase tracking-widest text-[#44474c] font-mono">Incubated 2023</span>
+            <span class="text-xs uppercase tracking-widest text-[#44474c] font-mono">{{ p.year }}</span>
           </div>
         </div>
 
-        <!-- Right: Visual Asset & Interactive Architecture Mock -->
-        <div class="lg:col-span-5 bg-[#ebe8e0] relative min-h-[340px] lg:min-h-full flex flex-col justify-between p-8 overflow-hidden">
+        <!-- Visual -->
+        <div class="lg:col-span-5 bg-[#ebe8e0] relative min-h-[340px] lg:min-h-full flex flex-col justify-between p-8 overflow-hidden"
+             [class.order-2]="odd" [class.lg:order-1]="odd">
           <div class="w-full h-full flex flex-col justify-center">
             <div class="w-full rounded-xl overflow-hidden shadow-xl bg-[#111c29] border border-stone-700/60 flex flex-col">
               <div class="bg-[#e5e2da] px-3.5 py-2.5 flex items-center justify-between border-b border-stone-700/60">
@@ -288,217 +282,28 @@
                 </div>
                 <div class="bg-white px-3 py-0.5 rounded text-xs font-mono text-[#44474c] flex items-center gap-1.5 max-w-[220px] truncate border border-stone-300">
                   <span class="material-symbols-outlined text-xs text-[#1e6771]">lock</span>
-                  <span>app.synapsecore.io/telemetry</span>
+                  <span>{{ p.browserUrl }}</span>
                 </div>
-                <div class="flex items-center gap-1 text-[#44474c]">
-                  <span class="material-symbols-outlined text-sm">fullscreen</span>
-                </div>
+                <span class="material-symbols-outlined text-sm text-[#44474c]">fullscreen</span>
               </div>
               <div class="relative w-full aspect-[16/10] overflow-hidden bg-[#f1eee6]">
-                <img src="images/project1.png" alt="Synapse Core Web Application Interface" class="w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-300">
+                <img [src]="p.image" [alt]="p.imageAlt" class="w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-300">
               </div>
             </div>
             <div class="flex items-center justify-between pt-3 text-xs font-mono text-[#44474c]">
               <span class="flex items-center gap-1.5 text-[#1e6771]">
                 <span class="w-1.5 h-1.5 rounded-full bg-[#1e6771]"></span>
-                PROD // TELEMETRY_STREAM
+                {{ p.footerLeft }}
               </span>
-              <span class="uppercase tracking-wider font-semibold text-[#1e6771]">LATENCY 4.2ms</span>
+              <span class="uppercase tracking-wider font-semibold text-[#1e6771]">{{ p.footerRight }}</span>
             </div>
           </div>
         </div>
 
       </div>
     </article>
-
-    <!-- Project 02: Aura Cloud (Cloud Infra) -->
-    <article class="project-card bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden border border-stone-200/60" data-category="cloud">
-      <div class="grid grid-cols-1 lg:grid-cols-12">
-        
-        <!-- Left: Visual Asset & Interactive Architecture Mock -->
-        <div class="lg:col-span-5 bg-[#ebe8e0] order-2 lg:order-1 relative min-h-[340px] lg:min-h-full flex flex-col justify-between p-8">
-          <div class="w-full h-full flex flex-col justify-center">
-            <div class="w-full rounded-xl overflow-hidden shadow-xl bg-[#111c29] border border-stone-700/60 flex flex-col">
-              <div class="bg-[#e5e2da] px-3.5 py-2.5 flex items-center justify-between border-b border-stone-700/60">
-                <div class="flex items-center gap-1.5">
-                  <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
-                  <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
-                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                </div>
-                <div class="bg-white px-3 py-0.5 rounded text-xs font-mono text-[#44474c] flex items-center gap-1.5 max-w-[220px] truncate border border-stone-300">
-                  <span class="material-symbols-outlined text-xs text-[#1e6771]">lock</span>
-                  <span>app.auracloud.io/lakehouse</span>
-                </div>
-                <div class="flex items-center gap-1 text-[#44474c]">
-                  <span class="material-symbols-outlined text-sm">fullscreen</span>
-                </div>
-              </div>
-              <div class="relative w-full aspect-[16/10] overflow-hidden bg-[#f1eee6]">
-                <img src="images/project2.png" alt="Aura Cloud Management UI" class="w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-300">
-              </div>
-            </div>
-            <div class="flex items-center justify-between pt-3 text-xs font-mono text-[#44474c]">
-              <span class="flex items-center gap-1.5 text-[#1e6771]">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#1e6771]"></span>
-                AURA-02 // DUCKDB MESH
-              </span>
-              <span class="uppercase tracking-wider font-semibold text-[#1e6771]">32 NODES SYNCED</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Narrative & Metrics -->
-        <div class="lg:col-span-7 p-8 lg:p-12 order-1 lg:order-2 flex flex-col justify-between space-y-8">
-          <div class="space-y-4">
-            <div class="flex items-center gap-3 flex-wrap">
-              <span class="text-lg font-bold text-[#1e6771]">02 / CLOUD INFRA</span>
-              <span class="text-xs uppercase tracking-wider bg-[#aaeef9] text-[#004f58] px-2.5 py-1 rounded font-semibold">Enterprise Live</span>
-              <span class="text-xs text-[#44474c] uppercase tracking-wider">Singapore · Tokyo</span>
-            </div>
-            <div>
-              <h3 class="text-3xl lg:text-4xl font-bold text-[#1c1c17]">Aura Cloud</h3>
-              <p class="text-base text-[#1e6771] font-medium mt-1">Distributed Data Lakehouse Management UI &amp; Query Accelerator</p>
-            </div>
-            <p class="text-base text-[#44474c] leading-relaxed">
-              Aura Cloud delivers an ultra-responsive control layer over object storage data lakes (S3/GCS/Azure Blob). By weaving DuckDB-Wasm query acceleration directly into a distributed orchestration console, engineering teams analyze petabyte-scale Iceberg tables in fractional time without egress penalties.
-            </p>
-            
-            <!-- Technical Architecture Tags -->
-            <div class="pt-2">
-              <span class="text-xs uppercase tracking-wider text-[#1c1c17] font-semibold block mb-2">Core Architecture</span>
-              <div class="flex flex-wrap gap-2">
-                <span class="bg-[#f1eee6] text-[#44474c] text-xs px-3 py-1.5 rounded-md font-mono">Apache Iceberg</span>
-                <span class="bg-[#f1eee6] text-[#44474c] text-xs px-3 py-1.5 rounded-md font-mono">WebAssembly / DuckDB</span>
-                <span class="bg-[#f1eee6] text-[#44474c] text-xs px-3 py-1.5 rounded-md font-mono">Arrow Flight SQL</span>
-                <span class="bg-[#f1eee6] text-[#44474c] text-xs px-3 py-1.5 rounded-md font-mono">Golang Cluster Daemon</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Quantitative Output Metric Badges -->
-          <div class="grid grid-cols-3 gap-4 bg-[#f6f3eb] p-6 rounded-xl border border-stone-200/40">
-            <div>
-              <span class="text-2xl lg:text-3xl font-bold text-[#1c1c17] block">3.8x</span>
-              <span class="text-xs text-[#44474c]">Query Speedup</span>
-            </div>
-            <div>
-              <span class="text-2xl lg:text-3xl font-bold text-[#1e6771] block">-68%</span>
-              <span class="text-xs text-[#44474c]">Cloud Egress Cost</span>
-            </div>
-            <div>
-              <span class="text-2xl lg:text-3xl font-bold text-[#1c1c17] block">4.2 PB</span>
-              <span class="text-xs text-[#44474c]">Managed Under Mesh</span>
-            </div>
-          </div>
-
-          <!-- Action Strip -->
-          <div class="flex items-center justify-between pt-2">
-            <a class="inline-flex items-center gap-2 text-sm font-semibold text-[#1e6771] hover:text-[#1c1c17] transition-colors" href="#">
-              <span>View Infrastructure Whitepaper</span>
-              <span class="material-symbols-outlined text-lg">arrow_outward</span>
-            </a>
-            <span class="text-xs uppercase tracking-widest text-[#44474c] font-mono">Deployed 2024</span>
-          </div>
-        </div>
-
-      </div>
-    </article>
-
-
-    <!-- Project 03: Synapse Core (Fintech) -->
-    <article class="project-card bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden border border-stone-200/60" data-category="fintech">
-      <div class="grid grid-cols-1 lg:grid-cols-12">
-        
-        <!-- Left: Narrative & Metrics -->
-        <div class="lg:col-span-7 p-8 lg:p-12 flex flex-col justify-between space-y-8">
-          <div class="space-y-4">
-            <div class="flex items-center gap-3 flex-wrap">
-              <span class="text-lg font-bold text-[#1e6771]">03 / FINTECH</span>
-              <span class="text-xs uppercase tracking-wider bg-[#aaeef9] text-[#004f58] px-2.5 py-1 rounded font-semibold">Active Series A Scale</span>
-              <span class="text-xs text-[#44474c] uppercase tracking-wider">London · New York</span>
-            </div>
-            <div>
-              <h3 class="text-3xl lg:text-4xl font-bold text-[#1c1c17]">Synapse Core</h3>
-              <p class="text-base text-[#1e6771] font-medium mt-1">Enterprise Workflow Telemetry &amp; Continuous Compliance Engine</p>
-            </div>
-            <p class="text-base text-[#44474c] leading-relaxed">
-              Tier-1 investment banks and neobanks struggle with disjointed regulatory reporting pipelines. Synapse Core orchestrates high-throughput transaction telemetry into real-time regulatory ledgers, guaranteeing immutable cross-jurisdiction audit trails with sub-second reconciliations.
-            </p>
-            
-            <!-- Technical Architecture Tags -->
-            <div class="pt-2">
-              <span class="text-xs uppercase tracking-wider text-[#1c1c17] font-semibold block mb-2">Core Architecture</span>
-              <div class="flex flex-wrap gap-2">
-                <span class="bg-[#f1eee6] text-[#44474c] text-xs px-3 py-1.5 rounded-md font-mono">Rust Event Loop</span>
-                <span class="bg-[#f1eee6] text-[#44474c] text-xs px-3 py-1.5 rounded-md font-mono">Kafka · ClickHouse</span>
-                <span class="bg-[#f1eee6] text-[#44474c] text-xs px-3 py-1.5 rounded-md font-mono">GraphQL Federation</span>
-                <span class="bg-[#f1eee6] text-[#44474c] text-xs px-3 py-1.5 rounded-md font-mono">Zero-Knowledge Verification</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Quantitative Output Metric Badges -->
-          <div class="grid grid-cols-3 gap-4 bg-[#f6f3eb] p-6 rounded-xl border border-stone-200/40">
-            <div>
-              <span class="text-2xl lg:text-3xl font-bold text-[#1c1c17] block">$12.4M</span>
-              <span class="text-xs text-[#44474c]">Current ARR Scale</span>
-            </div>
-            <div>
-              <span class="text-2xl lg:text-3xl font-bold text-[#1e6771] block">99.999%</span>
-              <span class="text-xs text-[#44474c]">Ledger Accuracy</span>
-            </div>
-            <div>
-              <span class="text-2xl lg:text-3xl font-bold text-[#1c1c17] block">&lt; 340ms</span>
-              <span class="text-xs text-[#44474c]">Settlement Cycle</span>
-            </div>
-          </div>
-
-          <!-- Action Strip -->
-          <div class="flex items-center justify-between pt-2">
-            <a class="inline-flex items-center gap-2 text-sm font-semibold text-[#1e6771] hover:text-[#1c1c17] transition-colors" href="#">
-              <span>View Technical Architecture Blueprint</span>
-              <span class="material-symbols-outlined text-lg">arrow_outward</span>
-            </a>
-            <span class="text-xs uppercase tracking-widest text-[#44474c] font-mono">Incubated 2023</span>
-          </div>
-        </div>
-
-        <!-- Right: Visual Asset & Interactive Architecture Mock -->
-        <div class="lg:col-span-5 bg-[#ebe8e0] relative min-h-[340px] lg:min-h-full flex flex-col justify-between p-8 overflow-hidden">
-          <div class="w-full h-full flex flex-col justify-center">
-            <div class="w-full rounded-xl overflow-hidden shadow-xl bg-[#111c29] border border-stone-700/60 flex flex-col">
-              <div class="bg-[#e5e2da] px-3.5 py-2.5 flex items-center justify-between border-b border-stone-700/60">
-                <div class="flex items-center gap-1.5">
-                  <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
-                  <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
-                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                </div>
-                <div class="bg-white px-3 py-0.5 rounded text-xs font-mono text-[#44474c] flex items-center gap-1.5 max-w-[220px] truncate border border-stone-300">
-                  <span class="material-symbols-outlined text-xs text-[#1e6771]">lock</span>
-                  <span>app.synapsecore.io/telemetry</span>
-                </div>
-                <div class="flex items-center gap-1 text-[#44474c]">
-                  <span class="material-symbols-outlined text-sm">fullscreen</span>
-                </div>
-              </div>
-              <div class="relative w-full aspect-[16/10] overflow-hidden bg-[#f1eee6]">
-                <img src="images/project3.png" alt="Synapse Core Web Application Interface" class="w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-300">
-              </div>
-            </div>
-            <div class="flex items-center justify-between pt-3 text-xs font-mono text-[#44474c]">
-              <span class="flex items-center gap-1.5 text-[#1e6771]">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#1e6771]"></span>
-                PROD // TELEMETRY_STREAM
-              </span>
-              <span class="uppercase tracking-wider font-semibold text-[#1e6771]">LATENCY 4.2ms</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </article>
-
-  </div>
+  }
+</div>
   </div>
  
  
