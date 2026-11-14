@@ -1,0 +1,220 @@
+<section class="min-h-screen bg-[#FAF9F5] bg-grid-pattern text-[#141715] py-16 px-4 sm:px-6 flex flex-col items-center justify-center font-sans selection:bg-[#141715] selection:text-[#FAF9F5]">
+  
+  <!-- Top Protocol Bar -->
+  <div class="w-full max-w-[660px] flex items-center justify-between text-[11px] font-mono tracking-widest uppercase text-[#5C635E] mb-8 pb-3 border-b border-[#E5E3DC]">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+      <span>Direct Engineering Channel</span>
+    </div>
+    <span class="px-2 py-0.5 bg-[#EFECE4] text-[#141715] rounded text-[10px]">ENQUIRY PROTOCOL</span>
+  </div>
+
+  <!-- Header Section -->
+  <div class="w-full max-w-[660px] mb-8 text-left">
+    <p class="text-xs font-mono uppercase tracking-widest text-[#2D5A4C] mb-2">
+      Start an Enquiry / 01
+    </p>
+    <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight text-[#141715] leading-[1.15] mb-3">
+      Let’s build something exceptional.
+    </h1>
+    <p class="text-sm sm:text-base text-[#5C635E] leading-relaxed">
+      Tell us where you are and what you aim to build. No formal 50-page RFP required—we favor direct technical alignment over exhaustive paperwork.
+    </p>
+  </div>
+
+  <!-- Main Form Card -->
+  <div class="w-full max-w-[660px] bg-white border border-[#E5E3DC] rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.03)] p-6 sm:p-10 transition-all duration-300">
+    
+    @if (!isSubmitted()) {
+      <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()" novalidate>
+        
+        <!-- Section 01: Credentials -->
+        <div class="mb-8">
+          <div class="flex items-center gap-2 mb-5">
+            <span class="text-xs font-mono font-semibold text-[#2D5A4C]">01</span>
+            <h2 class="text-xs font-mono uppercase tracking-wider font-semibold text-[#141715]">
+              Institutional & Contact Credentials
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <!-- Name -->
+            <div>
+              <label for="name" class="block text-xs font-medium text-[#141715] mb-1.5">
+                Your Name <span class="text-red-600">*</span>
+              </label>
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                placeholder="e.g. Tariq Al-Mansoor"
+                class="w-full px-3.5 py-2.5 text-sm bg-[#FAF9F5] border rounded-lg text-[#141715] placeholder-[#9CA39E] focus:outline-none focus:bg-white transition-colors"
+                [ngClass]="enquiryForm.get('name')?.invalid && enquiryForm.get('name')?.touched ? 'border-red-500 focus:border-red-500' : 'border-[#E2E0D8] focus:border-[#141715]'"
+              />
+              @if (enquiryForm.get('name')?.invalid && enquiryForm.get('name')?.touched) {
+                <p class="text-[11px] text-red-600 mt-1">Please enter your full name.</p>
+              }
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-xs font-medium text-[#141715] mb-1.5">
+                Work / Founding Email <span class="text-red-600">*</span>
+              </label>
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                placeholder="name@company.io"
+                class="w-full px-3.5 py-2.5 text-sm bg-[#FAF9F5] border rounded-lg text-[#141715] placeholder-[#9CA39E] focus:outline-none focus:bg-white transition-colors"
+                [ngClass]="enquiryForm.get('email')?.invalid && enquiryForm.get('email')?.touched ? 'border-red-500 focus:border-red-500' : 'border-[#E2E0D8] focus:border-[#141715]'"
+              />
+              @if (enquiryForm.get('email')?.invalid && enquiryForm.get('email')?.touched) {
+                <p class="text-[11px] text-red-600 mt-1">Please enter a valid work email.</p>
+              }
+            </div>
+
+            <!-- Company -->
+            <div>
+              <label for="company" class="block text-xs font-medium text-[#141715] mb-1.5">
+                Company or Proposed Entity
+              </label>
+              <input
+                id="company"
+                type="text"
+                formControlName="company"
+                placeholder="e.g. NexaCloud Technologies"
+                class="w-full px-3.5 py-2.5 text-sm bg-[#FAF9F5] border border-[#E2E0D8] rounded-lg text-[#141715] placeholder-[#9CA39E] focus:outline-none focus:bg-white focus:border-[#141715] transition-colors"
+              />
+            </div>
+
+            <!-- Stage -->
+            <div>
+              <label for="stage" class="block text-xs font-medium text-[#141715] mb-1.5">
+                Current Stage
+              </label>
+              <div class="relative">
+                <select
+                  id="stage"
+                  formControlName="stage"
+                  class="w-full appearance-none px-3.5 py-2.5 text-sm bg-[#FAF9F5] border border-[#E2E0D8] rounded-lg text-[#141715] focus:outline-none focus:bg-white focus:border-[#141715] transition-colors cursor-pointer"
+                >
+                  @for (item of stages; track item) {
+                    <option [value]="item">{{ item }}</option>
+                  }
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-[#5C635E]">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 02: Context -->
+        <div class="mb-8">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono font-semibold text-[#2D5A4C]">02</span>
+              <h2 class="text-xs font-mono uppercase tracking-wider font-semibold text-[#141715]">
+                Brief Context & Bottleneck <span class="text-red-600">*</span>
+              </h2>
+            </div>
+            <span class="text-[11px] font-mono text-[#8A918C]">Plain text is best</span>
+          </div>
+
+          <textarea
+            id="message"
+            rows="4"
+            formControlName="message"
+            (input)="onMessageInput($event)"
+            placeholder="E.g., What problem are you solving and what is your current technical bottleneck? Are you looking for full-stack SaaS architecture, MVP delivery, or system scaling?"
+            class="w-full px-3.5 py-3 text-sm bg-[#FAF9F5] border rounded-lg text-[#141715] placeholder-[#9CA39E] focus:outline-none focus:bg-white transition-colors resize-none leading-relaxed"
+            [ngClass]="enquiryForm.get('message')?.invalid && enquiryForm.get('message')?.touched ? 'border-red-500 focus:border-red-500' : 'border-[#E2E0D8] focus:border-[#141715]'"
+          ></textarea>
+
+          <div class="flex items-center justify-between mt-1.5">
+            <div>
+              @if (enquiryForm.get('message')?.invalid && enquiryForm.get('message')?.touched) {
+                <p class="text-[11px] text-red-600">Please provide at least 10 characters describing your project.</p>
+              }
+            </div>
+            <span class="text-[11px] font-mono text-[#8A918C]">{{ charCount() }} / 1200</span>
+          </div>
+        </div>
+
+        <!-- Error Alert -->
+        @if (errorMessage()) {
+          <div class="mb-5 p-3 rounded-lg bg-red-50 border border-red-200 text-xs text-red-700">
+            {{ errorMessage() }}
+          </div>
+        }
+
+        <!-- Footer / Submit -->
+        <div class="pt-5 border-t border-[#EFECE4] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-2 text-xs text-[#5C635E]">
+            <svg class="w-4 h-4 text-[#2D5A4C] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>We reply within 24–48 business hours</span>
+          </div>
+
+          <button
+            type="submit"
+            [disabled]="isSubmitting()"
+            class="w-full sm:w-auto px-6 py-3 bg-[#141715] hover:bg-[#262B28] disabled:bg-[#8A918C] text-white text-xs font-mono uppercase tracking-wider font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer group"
+          >
+            @if (isSubmitting()) {
+              <svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+              </svg>
+              <span>Transmitting...</span>
+            } @else {
+              <span>Submit Enquiry</span>
+              <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
+            }
+          </button>
+        </div>
+      </form>
+    } @else {
+      <!-- Dispatch Confirmed State -->
+      <div class="py-8 text-center animate-fade-in">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 mb-5">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+
+        <div class="inline-block px-2.5 py-1 bg-[#FAF9F5] border border-[#E5E3DC] rounded text-[11px] font-mono text-[#2D5A4C] mb-3">
+          DISPATCH CONFIRMED • {{ referenceNumber() }}
+        </div>
+
+        <h2 class="text-2xl font-semibold text-[#141715] mb-2">
+          Enquiry logged, {{ enquiryForm.value.name }}.
+        </h2>
+
+        <p class="text-sm text-[#5C635E] max-w-md mx-auto leading-relaxed mb-6">
+          Your brief has been routed directly to our founding engineering team. A confirmation and follow-up schedule will be sent to <span class="font-medium text-[#141715]">{{ enquiryForm.value.email }}</span>.
+        </p>
+
+        <button
+          type="button"
+          (click)="resetForm()"
+          class="px-5 py-2.5 border border-[#E2E0D8] hover:border-[#141715] text-xs font-mono uppercase tracking-wider text-[#141715] rounded-lg transition-colors cursor-pointer"
+        >
+          Send Another Brief
+        </button>
+      </div>
+    }
+
+  </div>
+
+  <!-- Bottom Micro-Trust Note -->
+  <p class="mt-6 text-[11px] font-mono text-[#8A918C] text-center">
+    Direct line to founding engineers — strictly confidential & NDA-ready.
+  </p>
+
+</section>
