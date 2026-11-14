@@ -23,7 +23,7 @@
   </div>
 
   <!-- Main Form Card -->
-  <div class="w-full max-w-[660px] bg-white border border-[#E5E3DC] rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.03)] p-6 sm:p-10 transition-all duration-300">
+  <div class="w-full max-w-[660px] bg-white border border-[#E5E3DC]  shadow-[0_8px_30px_rgb(0,0,0,0.03)] p-6 sm:p-10 transition-all duration-300">
     
     @if (!isSubmitted()) {
       <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()" novalidate>
@@ -48,7 +48,7 @@
                 type="text"
                 formControlName="name"
                 placeholder="e.g. Tariq Al-Mansoor"
-                class="w-full px-3.5 py-2.5 text-sm bg-[#FAF9F5] border rounded-lg text-[#141715] placeholder-[#9CA39E] focus:outline-none focus:bg-white transition-colors"
+                class="w-full px-3.5 py-2.5 text-sm bg-[#FAF9F5] border  text-[#141715] placeholder-[#9CA39E] focus:outline-none focus:bg-white transition-colors"
                 [ngClass]="enquiryForm.get('name')?.invalid && enquiryForm.get('name')?.touched ? 'border-red-500 focus:border-red-500' : 'border-[#E2E0D8] focus:border-[#141715]'"
               />
               @if (enquiryForm.get('name')?.invalid && enquiryForm.get('name')?.touched) {
@@ -66,7 +66,7 @@
                 type="email"
                 formControlName="email"
                 placeholder="name@company.io"
-                class="w-full px-3.5 py-2.5 text-sm bg-[#FAF9F5] border rounded-lg text-[#141715] placeholder-[#9CA39E] focus:outline-none focus:bg-white transition-colors"
+                class="w-full px-3.5 py-2.5 text-sm bg-[#FAF9F5] border  text-[#141715] placeholder-[#9CA39E] focus:outline-none focus:bg-white transition-colors"
                 [ngClass]="enquiryForm.get('email')?.invalid && enquiryForm.get('email')?.touched ? 'border-red-500 focus:border-red-500' : 'border-[#E2E0D8] focus:border-[#141715]'"
               />
               @if (enquiryForm.get('email')?.invalid && enquiryForm.get('email')?.touched) {
@@ -84,7 +84,7 @@
                 type="text"
                 formControlName="company"
                 placeholder="e.g. NexaCloud Technologies"
-                class="w-full px-3.5 py-2.5 text-sm bg-[#FAF9F5] border border-[#E2E0D8] rounded-lg text-[#141715] placeholder-[#9CA39E] focus:outline-none focus:bg-white focus:border-[#141715] transition-colors"
+                class="w-full px-3.5 py-2.5 text-sm bg-[#FAF9F5] border border-[#E2E0D8]  text-[#141715] placeholder-[#9CA39E] focus:outline-none focus:bg-white focus:border-[#141715] transition-colors"
               />
             </div>
 
@@ -97,7 +97,7 @@
                 <select
                   id="stage"
                   formControlName="stage"
-                  class="w-full appearance-none px-3.5 py-2.5 text-sm bg-[#FAF9F5] border border-[#E2E0D8] rounded-lg text-[#141715] focus:outline-none focus:bg-white focus:border-[#141715] transition-colors cursor-pointer"
+                  class="w-full appearance-none px-3.5 py-2.5 text-sm bg-[#FAF9F5] border border-[#E2E0D8] text-[#141715] focus:outline-none focus:bg-white focus:border-[#141715] transition-colors cursor-pointer"
                 >
                   @for (item of stages; track item) {
                     <option [value]="item">{{ item }}</option>
@@ -131,7 +131,7 @@
             formControlName="message"
             (input)="onMessageInput($event)"
             placeholder="E.g., What problem are you solving and what is your current technical bottleneck? Are you looking for full-stack SaaS architecture, MVP delivery, or system scaling?"
-            class="w-full px-3.5 py-3 text-sm bg-[#FAF9F5] border rounded-lg text-[#141715] placeholder-[#9CA39E] focus:outline-none focus:bg-white transition-colors resize-none leading-relaxed"
+            class="w-full px-3.5 py-3 text-sm bg-[#FAF9F5] border  text-[#141715] placeholder-[#9CA39E] focus:outline-none focus:bg-white transition-colors resize-none leading-relaxed"
             [ngClass]="enquiryForm.get('message')?.invalid && enquiryForm.get('message')?.touched ? 'border-red-500 focus:border-red-500' : 'border-[#E2E0D8] focus:border-[#141715]'"
           ></textarea>
 
@@ -164,7 +164,7 @@
           <button
             type="submit"
             [disabled]="isSubmitting()"
-            class="w-full sm:w-auto px-6 py-3 bg-[#141715] hover:bg-[#262B28] disabled:bg-[#8A918C] text-white text-xs font-mono uppercase tracking-wider font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer group"
+            class="w-full sm:w-auto px-6 py-3 bg-[#141715] hover:bg-[#262B28] disabled:bg-[#8A918C] text-white text-xs font-mono uppercase tracking-wider font-medium  transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer group"
           >
             @if (isSubmitting()) {
               <svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
