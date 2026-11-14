@@ -1,0 +1,42 @@
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes floatSmooth {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 28s linear infinite;
+}
+
+.animate-spin-medium {
+  animation: spinSlow 14s linear infinite;
+}
+
+.animate-spin-reverse {
+  animation: spinReverse 22s linear infinite;
+}
+
+.animate-float {
+  animation: floatSmooth 4s ease-in-out infinite;
+}
